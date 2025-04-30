@@ -1,0 +1,20 @@
+<div class="card bg-custom-neutral-0 shadow-sm border-[1px]">
+    <div class="card-body p-[18px]">
+        <div class="flex gap-5 items-start">
+            <img src={{extension.logo}} alt="">
+            <div>
+                <h2 class="card-title text-custom-neutral-800 mb-1"> {{extension.name}}</h2>
+                <p class="font-light text-[16px]"> {{extension.description}}</p>    
+            </div>
+    
+        </div>
+        <div class="card-actions justify-between items-center mt-5">
+            <button class="px-5 py-2 bg-white rounded-3xl text-custom-neutral-800 border-[0.5px] border-neutral-200 shadow-sm transition ease-linear duration-300 hover:bg-red-700 hover:text-white">Remove</button>
+            <input
+            type="checkbox"
+            class="toggle toggle-md toggle-error "
+            [(ngModel)]="extension.isActive"
+             />
+        </div>
+    </div>
+</div>

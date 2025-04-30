@@ -1,0 +1,26 @@
+<div class="mt-10 flex sm:flex-row flex-col justify-between items-center gap-4">
+    <h1 class="text-custom-neutral-900 text-3xl font-bold">Extensions List</h1>
+
+    <div class="flex items-center gap-4">
+        <button class="cbtn"
+         (click)="getAllExtensions()"
+         [ngClass]="{ '!bg-red-700 !text-white': activeFilter === 'all' }">
+         All
+        </button>
+        <button class="cbtn"
+         (click)="getActiveExtensions()"
+         [ngClass]="{ '!bg-red-700 !text-white': activeFilter === 'active' }">
+         Active</button>
+        <button class="cbtn"
+         (click)="getInactiveExtensions()"
+         [ngClass]="{ '!bg-red-700 !text-white': activeFilter === 'inactive' }">
+         Inactive
+        </button>
+    </div>
+</div>
+<div class="grid lg:grid-cols-3 sm:grid-cols-2 gap-5 mt-8">
+    <app-grid
+        *ngFor="let extension of extensions"
+        [extension]="extension"
+    ></app-grid>
+</div>
