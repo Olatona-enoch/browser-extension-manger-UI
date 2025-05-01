@@ -12,7 +12,7 @@
             <button (click)="onDelete(extension)" class="removebtn">Remove</button>
             <input
                 type="checkbox"
-                class="toggle toggle-md toggle-error "
+                class="toggle toggle-md border-gray-300 bg-white [--tglbg:theme(colors.gray.300)] checked:border-custom-red-500 checked:bg-white checked:[--tglbg:theme(colors.custom-red.500)] "
                 [(ngModel)]="extension.isActive"
                 (change)="onToggle(extension)"
             />

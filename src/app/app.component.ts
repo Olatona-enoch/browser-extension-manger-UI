@@ -1,15 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  darktheme!: boolean;
+export class AppComponent implements OnInit {
+  darktheme: boolean = false;
+
+  ngOnInit(): void {
+    const storedTheme = localStorage.getItem('theme');
+    this.darktheme = storedTheme === 'dark';
+
+    // Set initial theme on <html> and <body>
+    this.applyTheme();
+  }
 
   changeTheme() {
     this.darktheme = !this.darktheme;
+    localStorage.setItem('theme', this.darktheme ? 'dark' : 'light');
     this.applyTheme();
     console.log("change theme")
   }
