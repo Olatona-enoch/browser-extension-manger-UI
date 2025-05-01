@@ -1,7 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { dataRepresentation } from '../data-representation';
+
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+  })
+};
 
 
 @Injectable({
@@ -9,8 +16,8 @@ import { dataRepresentation } from '../data-representation';
 })
 export class ExtensionService {
 
-  private baseUrl: string = 'assets/data.json';
-
+  // private baseUrl: string = 'assets/data.json';
+  private baseUrl: string = 'http://localhost:5000/extensions';
 
   constructor(
     private http: HttpClient
@@ -21,12 +28,23 @@ export class ExtensionService {
   }
   getActiveExtensions(): Observable<dataRepresentation[]>{
     return this.getAllExtensions().pipe(
-      map(data => data.filter(extension => extension.isActive))
+      map(extensions => extensions.filter(extension => extension.isActive))
     );
   }
   getInactiveExtensions(): Observable<dataRepresentation[]> {
     return this.getAllExtensions().pipe(
-      map(data => data.filter(extension => !extension.isActive))
+      map(extensions => extensions.filter(extension => !extension.isActive))
     );  
+  }
+
+  deleteExtension(extension: dataRepresentation): Observable<dataRepresentation> {
+    const idUrl = `${this.baseUrl}/${extension.id}`;
+    return this.http.delete<dataRepresentation>(idUrl);
+
+  }
+
+  updateExtensionStatus(extension: dataRepresentation): Observable <dataRepresentation> {
+    const idUrl = `${this.baseUrl}/${extension.id}`;
+    return this.http.put<dataRepresentation>(idUrl, extension, httpOptions);  
   }
 }

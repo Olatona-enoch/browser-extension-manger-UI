@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 // import { ExtensionService } from 'src/app/services/extension.service';
 import { dataRepresentation } from 'src/app/data-representation';
 
@@ -10,11 +10,25 @@ import { dataRepresentation } from 'src/app/data-representation';
 export class GridComponent implements OnInit{
   @Input()
   extension!: dataRepresentation;
+  @Output() 
+  onDeleteExtension: EventEmitter<dataRepresentation> = new EventEmitter();
+  @Output() 
+  onToggleStatus: EventEmitter<dataRepresentation> = new EventEmitter()
+
   constructor(
     // private extensionService : ExtensionService
   ){}
 
   ngOnInit(): void {
   }
+
+  onDelete(extension: dataRepresentation) {
+    this.onDeleteExtension.emit(extension)
+  }
+
+  onToggle(extension: dataRepresentation) {
+    this.onToggleStatus.emit(extension)  
+  }
+    
 
 }

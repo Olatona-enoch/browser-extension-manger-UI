@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'selector',
   content: [
     "./src/**/*.{html,ts}",
   ],
@@ -15,6 +16,11 @@ module.exports = {
           700: 'hsl(225, 23%, 24%)',
           800: 'hsl(226, 25%, 17%)',
           900: 'hsl(227, 75%, 14%)',
+        },
+        'custom-red': {
+          400: 'hsl(3, 86%, 64%)',
+          500: 'hsl(3, 71%, 56%)',
+          600: 'hsl(3, 77%, 44%)'
         },
       },
       fontFamily: {

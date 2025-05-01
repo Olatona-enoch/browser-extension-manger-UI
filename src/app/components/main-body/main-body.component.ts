@@ -29,12 +29,25 @@ export class MainBodyComponent implements OnInit {
   getActiveExtensions(){
     this.activeFilter = 'active';
     this.extensionService.getActiveExtensions()
-    .subscribe(data => this.extensions = data);
+    .subscribe(extensions => this.extensions = extensions);
   }
   getInactiveExtensions() {
     this.activeFilter = 'inactive';
     this.extensionService.getInactiveExtensions()
-    .subscribe(data => this.extensions = data);
+    .subscribe(extensions => this.extensions = extensions);
   }
+
+  deleteExtension(extension: dataRepresentation) {
+    this.extensionService.deleteExtension(extension)
+    .subscribe(() => this.extensions = this.extensions.filter(ext => ext.id !==  extension.id));
+  }
+
+  toggleStatus(extension: dataRepresentation) {
+    // extension.isActive = !extension.isActive;
+    console.log("toggled:",extension.isActive);
+    this.extensionService.updateExtensionStatus(extension)
+    .subscribe();
+  }
+        
 }
 

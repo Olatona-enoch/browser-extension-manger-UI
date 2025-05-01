@@ -1,19 +1,19 @@
 <div class="mt-10 flex sm:flex-row flex-col justify-between items-center gap-4">
-    <h1 class="text-custom-neutral-900 text-3xl font-bold">Extensions List</h1>
+    <h1 class="text-custom-neutral-900 dark:text-white text-3xl font-bold">Extensions List</h1>
 
     <div class="flex items-center gap-4">
         <button class="cbtn"
          (click)="getAllExtensions()"
-         [ngClass]="{ '!bg-red-700 !text-white': activeFilter === 'all' }">
+         [ngClass]="{ 'clicked': activeFilter === 'all' }">
          All
         </button>
         <button class="cbtn"
          (click)="getActiveExtensions()"
-         [ngClass]="{ '!bg-red-700 !text-white': activeFilter === 'active' }">
+         [ngClass]="{ 'clicked': activeFilter === 'active' }">
          Active</button>
         <button class="cbtn"
          (click)="getInactiveExtensions()"
-         [ngClass]="{ '!bg-red-700 !text-white': activeFilter === 'inactive' }">
+         [ngClass]="{ 'clicked': activeFilter === 'inactive' }">
          Inactive
         </button>
     </div>
@@ -22,5 +22,7 @@
     <app-grid
         *ngFor="let extension of extensions"
         [extension]="extension"
+        (onDeleteExtension)="deleteExtension(extension)"
+        (onToggleStatus)="toggleStatus(extension)"
     ></app-grid>
 </div>
