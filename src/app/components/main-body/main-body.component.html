@@ -1,28 +1,61 @@
-<div class="mt-10 flex sm:flex-row flex-col justify-between items-center gap-4">
-    <h1 class="text-custom-neutral-900 dark:text-white text-3xl font-bold">Extensions List</h1>
-
-    <div class="flex items-center gap-4">
-        <button class="cbtn"
-         (click)="getAllExtensions()"
-         [ngClass]="{ 'clicked': activeFilter === 'all' }">
-         All
-        </button>
-        <button class="cbtn"
-         (click)="getActiveExtensions()"
-         [ngClass]="{ 'clicked': activeFilter === 'active' }">
-         Active</button>
-        <button class="cbtn"
-         (click)="getInactiveExtensions()"
-         [ngClass]="{ 'clicked': activeFilter === 'inactive' }">
-         Inactive
-        </button>
+<div >
+    <div class="mt-10 flex sm:flex-row flex-col justify-between items-center gap-4">
+        <h1 class="text-custom-neutral-900 dark:text-white text-3xl font-bold">Extensions List</h1>
+        
+    
+        <div class="flex items-center gap-4">
+            <button class="cbtn"
+             (click)="getAllExtensions()"
+             [ngClass]="{ 'clicked': activeFilter === 'all' }">
+             All
+            </button>
+            <button class="cbtn"
+             (click)="getActiveExtensions()"
+             [ngClass]="{ 'clicked': activeFilter === 'active' }">
+             Active</button>
+            <button class="cbtn"
+             (click)="getInactiveExtensions()"
+             [ngClass]="{ 'clicked': activeFilter === 'inactive' }">
+             Inactive
+            </button>
+        </div>
     </div>
-</div>
-<div class="grid lg:grid-cols-3 sm:grid-cols-2 gap-5 mt-8">
-    <app-grid
-        *ngFor="let extension of extensions"
-        [extension]="extension"
-        (onDeleteExtension)="deleteExtension(extension)"
-        (onToggleStatus)="toggleStatus(extension)"
-    ></app-grid>
+
+    <div *ngIf="operation" role="alert" class="alert alert-success mt-5 animate-pulse absolute top-0 w-80">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6 shrink-0 stroke-current"
+          fill="none"
+          viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>{{serviceName}} {{serviceDescription}}</span>
+    </div>
+
+    <div *ngIf="loading" class="h-96 flex items-center justify-center">
+        <span class="loading loading-spinner loading-lg text-primary"></span>
+    </div>
+
+    <div *ngIf="!loading && extensions.length > 0;" class="grid lg:grid-cols-3 sm:grid-cols-2 gap-5 mt-8">
+        <app-grid
+          *ngFor="let extension of extensions"
+          [extension]="extension"
+          (onDeleteExtension)="deleteExtension(extension)"
+          (onToggleStatus)="toggleStatus(extension)"
+        ></app-grid>
+    </div>
+      
+      <!-- <ng-template [ngIf]="!loading && extensions.length === 0" #emptyMessage>
+        <div class="h-96 w-full flex items-center justify-center">
+            <p class="text-custom-neutral-900 dark:text-white capitalize text-4xl text-center">
+                No <span class="text-custom-red-500"> {{activeFilter}} </span> Extensions found
+            </p>
+        </div>
+      </ng-template> -->
+      <app-empty-state  *ngIf="!loading && extensions.length === 0" activeFilter = {{activeFilter}}></app-empty-state>
+          
 </div>

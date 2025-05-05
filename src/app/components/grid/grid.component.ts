@@ -1,11 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 // import { ExtensionService } from 'src/app/services/extension.service';
 import { dataRepresentation } from 'src/app/data-representation';
+import { ModalDialogComponent } from '../modal-dialog/modal-dialog.component';
+import {MatDialog, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-grid',
   templateUrl: './grid.component.html',
-  styleUrls: ['./grid.component.css']
+  styleUrls: ['./grid.component.css'],
+
 })
 export class GridComponent implements OnInit{
   @Input()
@@ -17,6 +21,7 @@ export class GridComponent implements OnInit{
 
   constructor(
     // private extensionService : ExtensionService
+    public dialog: MatDialog
   ){}
 
   ngOnInit(): void {
@@ -30,5 +35,4 @@ export class GridComponent implements OnInit{
     this.onToggleStatus.emit(extension)  
   }
     
-
 }

@@ -9,31 +9,53 @@
     
         </div>
         <div class="card-actions justify-between items-center mt-auto pt-4 ">
-            <button (click)="onDelete(extension)" class="removebtn">Remove</button>
+            <a href="#delete_modal_{{extension.id}}">
+                <button  class="removebtn"> Remove </button>
+            </a>
             <input
                 type="checkbox"
-                class="toggle toggle-md border-gray-300 bg-white [--tglbg:theme(colors.gray.300)] checked:border-custom-red-500 checked:bg-white checked:[--tglbg:theme(colors.custom-red.500)] "
+                class="toggle toggle-md border-custom-neutral-300 bg-white [--tglbg:theme(colors.custom-neutral.300)] dark:[--tglbg:theme(colors.custom-neutral.600)] checked:border-custom-red-500 checked:bg-white checked:[--tglbg:theme(colors.custom-red.500)] "
                 [(ngModel)]="extension.isActive"
                 (change)="onToggle(extension)"
             />
-        </div>    
-    </div>
-</div>
-
-<!-- <div class="card card-border  bg-base-100 h-[500px] w-[100%] shadow-md shadow-gray-800">
-    <figure>
-      <img src= {{extension.logo}} alt="">
-    </figure>
-    <div class="card-body">
-      <h2 class="card-title">{{extension.name}}</h2>
-      <p>{{extension.description}} </p>
-      <div class="card-actions justify-between">
-        <button class="px-5 py-2 bg-white rounded-3xl text-custom-neutral-800 border-[0.5px] border-neutral-200 shadow-sm transition ease-linear duration-300 hover:bg-red-700 hover:text-white">Remove</button>
-        <input
-        type="checkbox"
-        class="toggle toggle-md toggle-error "
-        [(ngModel)]="extension.isActive"
-         />      
         </div>
     </div>
-</div> -->
+</div>
+<!-- Open the modal using ID.showModal() method -->
+<!-- The button to open modal -->
+<!-- (click)="onDelete(extension)" -->
+<!-- Put this part before </body> tag -->
+<div class="modal" role="dialog" id="delete_modal_{{extension.id}}">
+  <div class="modal-box flex justify-center items-center flex-col bg-custom-neutral-0 dark:bg-custom-neutral-800">
+    <h3 class="text-2xl text-custom-neutral-900 dark:text-custom-red-500 font-bold">Are you sure?</h3>
+    <p class="py-3 text-custom-neutral-600 dark:text-neutral-400">Do you want to delete <span class="text-custom-neutral-900 dark:text-custom-red-500 font-medium text-base"> {{extension.name}}</span> Extension</p>
+    <a class="btn btn-sm btn-circle btn-primary absolute right-2 top-2" href="#">x</a>
+
+    <div class="modal-action justify-between">
+        <a href="#"> 
+         <button class="px-7 py-2 dark:bg-custom-neutral-800 dark:text-white dark:hover:text-white dark:hover:border-custom-red-400 dark:hover:bg-custom-red-400 bg-white rounded-xl text-custom-neutral-800 border-[0.5px] border-custom-neutral-300 dark:border-custom-neutral-600 shadow-sm transition ease-linear duration-300 hover:bg-custom-neutral-800 hover:text-white"> Cancel</button>
+        </a>
+        <a href="#">
+            <button class="px-7 py-2 dark:bg-custom-neutral-800 dark:text-white dark:hover:text-custom-neutral-900 dark:hover:border-custom-red-400 dark:hover:bg-custom-red-400 bg-custom-red-500 rounded-xl text-white border-[0.5px] border-red-500 dark:border-custom-neutral-600 shadow-sm transition ease-linear duration-300 hover:bg-custom-red-600 hover:text-white" (click)="onDelete(extension)"> Delete</button>
+        </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="modal" role="dialog" id="toggle_modal_{{extension.id}}">
+    <div class="modal-box flex justify-center items-center flex-col bg-custom-neutral-0 dark:bg-custom-neutral-800">
+      <h3 class="text-2xl text-custom-neutral-900 dark:text-custom-red-500 font-bold">Are you sure?</h3>
+      <p class="py-3 text-custom-neutral-600 dark:text-neutral-400">Do you want to delete <span class="text-custom-neutral-900 dark:text-custom-red-500 font-medium text-base"> {{extension.name}}</span> Extension</p>
+      <a class="btn btn-sm btn-circle btn-primary absolute right-2 top-2" href="#">x</a>
+  
+      <div class="modal-action justify-between">
+          <a href="#"> 
+           <button class="px-7 py-2 dark:bg-custom-neutral-800 dark:text-white dark:hover:text-white dark:hover:border-custom-red-400 dark:hover:bg-custom-red-400 bg-white rounded-xl text-custom-neutral-800 border-[0.5px] border-custom-neutral-300 dark:border-custom-neutral-600 shadow-sm transition ease-linear duration-300 hover:bg-custom-neutral-800 hover:text-white"> Cancel</button>
+          </a>
+          <a href="#">
+              <button class="px-7 py-2 dark:bg-custom-neutral-800 dark:text-white dark:hover:text-custom-neutral-900 dark:hover:border-custom-red-400 dark:hover:bg-custom-red-400 bg-custom-red-500 rounded-xl text-white border-[0.5px] border-red-500 dark:border-custom-neutral-600 shadow-sm transition ease-linear duration-300 hover:bg-custom-red-600 hover:text-white" (click)="onDelete(extension)"> Delete</button>
+          </a>
+      </div>
+    </div>
+  </div> -->
