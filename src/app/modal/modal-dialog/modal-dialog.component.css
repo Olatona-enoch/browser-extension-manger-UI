@@ -1,0 +1,9 @@
+::ng-deep .mat-mdc-dialog-container {
+    --mdc-dialog-container-color: hsl(200, 60%, 99%);
+    @apply overflow-hidden rounded-2xl dark:bg-custom-neutral-900 border-custom-neutral-900 !important;
+}
+
+::ng-deep .dark .mat-mdc-dialog-container {
+    --mdc-dialog-container-color: hsl(226, 25%, 17%);
+}
+

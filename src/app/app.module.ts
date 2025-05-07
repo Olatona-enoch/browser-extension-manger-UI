@@ -10,7 +10,8 @@ import { MainBodyComponent } from './components/main-body/main-body.component';
 import { GridComponent } from './components/grid/grid.component';
 import { EmptyStateComponent } from './components/empty-state/empty-state.component';
 import { MaterialModule } from './material/material.module';
-import { ModalDialogComponent } from './components/modal-dialog/modal-dialog.component';
+import { ModalDialogComponent } from './modal/modal-dialog/modal-dialog.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,6 @@ import { ModalDialogComponent } from './components/modal-dialog/modal-dialog.com
     MainBodyComponent,
     GridComponent,
     EmptyStateComponent,
-    ModalDialogComponent
   ],
   // entryComponents: [ ModalDialogComponent],
   imports: [
@@ -27,7 +27,8 @@ import { ModalDialogComponent } from './components/modal-dialog/modal-dialog.com
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

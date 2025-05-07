@@ -1,4 +1,5 @@
 <app-header
-(onChangeTheme)="changeTheme()"></app-header>
+[darktheme]= "darktheme"
+(onChangeTheme)="changeTheme($event)"></app-header>
 <app-main-body></app-main-body>
 <router-outlet></router-outlet>

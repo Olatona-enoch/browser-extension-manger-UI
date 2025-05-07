@@ -16,11 +16,11 @@ export class AppComponent implements OnInit {
     this.applyTheme();
   }
 
-  changeTheme() {
-    this.darktheme = !this.darktheme;
+  changeTheme(theme: boolean) {
+    this.darktheme = theme;
     localStorage.setItem('theme', this.darktheme ? 'dark' : 'light');
     this.applyTheme();
-    console.log("change theme")
+    console.log("Theme changed to", this.darktheme ? 'dark' : 'light');
   }
   applyTheme() {
     const html = document.documentElement;
